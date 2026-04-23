@@ -12,6 +12,9 @@ import NewSale from './pages/Sales/NewSale';
 import InventoryPage from './pages/Inventory/InventoryPage';
 import ProductsPage from './pages/Products/ProductsPage';
 import UsersPage from './pages/Users/UsersPage';
+import CustomersPage from './pages/Customers/CustomersPage';
+import SuppliersPage from './pages/Suppliers/SuppliersPage';
+import ReportsPage from './pages/Reports/ReportsPage';
 
 // ── Ruta protegida ────────────────────────────────────────────
 const ProtectedRoute = ({ children }) => {
@@ -107,7 +110,7 @@ export default function App() {
         <Route path="/customers" element={
           <ProtectedRoute>
             <AppLayout>
-              <PlaceholderPage title="Clientes" icon="👥" />
+              <CustomersPage />
             </AppLayout>
           </ProtectedRoute>
         } />
@@ -115,7 +118,7 @@ export default function App() {
         <Route path="/suppliers" element={
           <ProtectedRoute>
             <AppLayout>
-              <PlaceholderPage title="Proveedores" icon="🚚" />
+              <SuppliersPage />
             </AppLayout>
           </ProtectedRoute>
         } />
@@ -123,7 +126,7 @@ export default function App() {
         <Route path="/reports" element={
           <ProtectedRoute>
             <AppLayout>
-              <PlaceholderPage title="Reportes" icon="📈" />
+              <ReportsPage />
             </AppLayout>
           </ProtectedRoute>
         } />
