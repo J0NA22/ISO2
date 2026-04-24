@@ -30,8 +30,7 @@ const searchByBarcode = async (req, res, next) => {
 
 const create = async (req, res, next) => {
   try {
-    const ip = req.ip;
-    const product = await productService.createProduct(req.body, req.user.id, ip);
+    const product = await productService.createProduct(req.body, req.user.id, req.ip);
     return sendSuccess(res, product, 201, 'Producto creado');
   } catch (err) { next(err); }
 };
@@ -57,10 +56,26 @@ const createVariant = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
+// ── CATÁLOGOS ────────────────────────────────────────────────
+
 const listCategories = async (req, res, next) => {
   try {
     const categories = await productService.listCategories();
     return sendSuccess(res, categories);
+  } catch (err) { next(err); }
+};
+
+const createCategory = async (req, res, next) => {
+  try {
+    const category = await productService.createCategory(req.body);
+    return sendSuccess(res, category, 201, 'Categoría creada');
+  } catch (err) { next(err); }
+};
+
+const updateCategory = async (req, res, next) => {
+  try {
+    const category = await productService.updateCategory(parseInt(req.params.id), req.body);
+    return sendSuccess(res, category);
   } catch (err) { next(err); }
 };
 
@@ -71,6 +86,20 @@ const listSizes = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
+const createSize = async (req, res, next) => {
+  try {
+    const size = await productService.createSize(req.body);
+    return sendSuccess(res, size, 201, 'Talla creada');
+  } catch (err) { next(err); }
+};
+
+const updateSize = async (req, res, next) => {
+  try {
+    const size = await productService.updateSize(parseInt(req.params.id), req.body);
+    return sendSuccess(res, size);
+  } catch (err) { next(err); }
+};
+
 const listColors = async (req, res, next) => {
   try {
     const colors = await productService.listColors();
@@ -78,4 +107,23 @@ const listColors = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-module.exports = { list, getById, searchByBarcode, create, update, remove, createVariant, listCategories, listSizes, listColors };
+const createColor = async (req, res, next) => {
+  try {
+    const color = await productService.createColor(req.body);
+    return sendSuccess(res, color, 201, 'Color creado');
+  } catch (err) { next(err); }
+};
+
+const updateColor = async (req, res, next) => {
+  try {
+    const color = await productService.updateColor(parseInt(req.params.id), req.body);
+    return sendSuccess(res, color);
+  } catch (err) { next(err); }
+};
+
+module.exports = {
+  list, getById, searchByBarcode, create, update, remove, createVariant,
+  listCategories, createCategory, updateCategory,
+  listSizes, createSize, updateSize,
+  listColors, createColor, updateColor,
+};

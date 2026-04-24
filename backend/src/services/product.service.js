@@ -163,12 +163,61 @@ class ProductService {
     });
   }
 
+  async createCategory(data) {
+    return prisma.category.create({
+      data: { name: data.name.trim(), description: data.description, isActive: data.isActive ?? true },
+    });
+  }
+
+  async updateCategory(id, data) {
+    return prisma.category.update({
+      where: { id },
+      data: {
+        ...(data.name && { name: data.name.trim() }),
+        ...(data.description !== undefined && { description: data.description }),
+        ...(data.isActive !== undefined && { isActive: data.isActive }),
+      },
+    });
+  }
+
   async listSizes() {
     return prisma.size.findMany({ orderBy: { sortOrder: 'asc' } });
   }
 
+  async createSize(data) {
+    return prisma.size.create({
+      data: { name: data.name.trim(), sortOrder: data.sortOrder ?? 0 },
+    });
+  }
+
+  async updateSize(id, data) {
+    return prisma.size.update({
+      where: { id },
+      data: {
+        ...(data.name && { name: data.name.trim() }),
+        ...(data.sortOrder !== undefined && { sortOrder: data.sortOrder }),
+      },
+    });
+  }
+
   async listColors() {
     return prisma.color.findMany({ orderBy: { name: 'asc' } });
+  }
+
+  async createColor(data) {
+    return prisma.color.create({
+      data: { name: data.name.trim(), hexCode: data.hexCode ?? '#000000' },
+    });
+  }
+
+  async updateColor(id, data) {
+    return prisma.color.update({
+      where: { id },
+      data: {
+        ...(data.name && { name: data.name.trim() }),
+        ...(data.hexCode && { hexCode: data.hexCode }),
+      },
+    });
   }
 }
 

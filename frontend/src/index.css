@@ -666,6 +666,32 @@ tbody tr:hover { background: rgba(255,255,255,0.02); }
   margin-top: 6px;
 }
 
+/* ── Clases adicionales ────────────────────────────────────────── */
+.badge-teal  { background: rgba(78,205,196,0.15); color: var(--accent-secondary); }
+.badge-error { background: rgba(255,107,107,0.15); color: var(--accent-danger); }
+
+.stat-icon.danger { background: rgba(255,107,107,0.15); }
+.stat-icon.blue   { background: rgba(116,185,255,0.15); }
+
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+/* ── Btn Warning ────────────────────────────────────────────────── */
+.btn-warning {
+  background: linear-gradient(135deg, var(--accent-warning), #f59e0b);
+  color: #1a1a1a;
+}
+.btn-warning:hover:not(:disabled) { opacity: 0.9; }
+
+/* ── Pagination ────────────────────────────────────────────────── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 8px 0;
+  flex-wrap: wrap;
+}
+
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .main-content { margin-left: 0; }
